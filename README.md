@@ -1,26 +1,23 @@
 Print map maker
 ===============
-
-A tool to generate print maps from Mapbox tiles
+A fork of the LA Times' DataDesk Print Map Maker. This was originally meant for printing Mapbox tiles. This fork is meant to be a bit more generic and open up printing of  tilesets other than Mapbox ones.
 
 Simple print locator maps are extremely effective storytelling tools, but they can take a long time to produce. Why? Well, to start with, you have to find a reference that is licensed to use, digitize it and redraw the information, which can be a lot of work for an element that is 2 inches square.
 
 GIS is a solid step in the right direction. And for larger maps, especially those that illustrate complex data, it’s the tool of choice. But that’s a specialized skill that doesn’t exist on every staff.
 
-Print Map Maker allows artists and designers to create quality maps at a resolution high enough to look crisp on newsprint. We’ve been experimenting and publishing with this tool for six months and it has served us remarkably well.
-
+Print Map Maker allows artists and designers to create quality maps at a resolution high enough to look crisp on newsprint.
 * * *
 
 ![Print map maker in action.](img/print-map-maker-example.gif)
 
 ### How it's done
 
-Print Map Maker pulls in a global map generated from custom vector tiles created in [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) using [OpenStreetMap](http://www.openstreetmap.org/) data and displays them using Mapbox's version of [leaflet.js](http://leafletjs.com/).
+Print Map Maker pulls in a global map served as tiles and displays them using Mapbox's version of [leaflet.js](http://leafletjs.com/).
 
 [Geocodify](https://github.com/datadesk/jquery-geocodify) is used to autocomplete the address field and Mapbox's geocoder re-centers the map to the location. These can be adjusted or eliminated based on your needs.
 
 An image is generated using the [leaflet-image](https://github.com/mapbox/leaflet-image) plugin and appears at the bottom of your page. Download the image and resize it an image editing program.
-
 
 ### Getting started
 
@@ -30,22 +27,25 @@ Swap "YOUR API KEY" in the index.html file with your Default Public Token from M
 
     L.mapbox.accessToken = 'YOUR API KEY';
 
-Next you will need a map layer. Download and open [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) and create a new [style](https://www.mapbox.com/mapbox-studio/style-quickstart/). You don't need to customize yet. Just make a new style, save it and upload it. Mapbox studio will generate a style name that looks similar to this: "yourusername.f3da9821" Replace it here:
+Next you will need a map layer. A good starting place for finding tile basemaps is [Leaflet-provders preview](http://leaflet-extras.github.io/leaflet-providers/preview/). While Leaflet-providers is a great little Leaflet plugin, the preview page presents a variety of tilesets and the boilerplate code needed to display the maps. To use one of the tilesets, you need to include the tileset URL as the `value` attribute for the option in the basemap layer selector. For instance, if you wanted to use OpenStreetMap's Mapnik style, you would use the URL "http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png":
 
-	<option value="latimesmapping.f3da9821">
-		Flat World
+    <option value="http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png">
+		OSM Mapnik
 	</option>
 
-When you edit your style and re-upload, the changes will overwrite so your style should still work. Each map style you create can be added as an additional option.
+You can also use tilesets created in Mapbox
+    <option value ="https://api.mapbox.com/styles/v1/<user name>/<map id>/tiles/256/{z}/{x}/{y}?access_token=<access token>"
+        Mapbox tileset
+    </option>
+
+You can even pull in ArcGIS Server layers as your base. However, this will require you pass the service through something like [tileify-ags-proxy](https://github.com/gscplanning/tileify-ags-proxy).
 
 Open the index.html file in a browser and you're ready to test.
 
 
 ### Sizing: Multiples of three
 
-If you plan to use this for print newspaper production, it helps to think of everything in multiples of three.
-
-Assuming you have standard column sizes, you need to figure out the pixel width of your columns. If you use Adobe Illustrator, open your document and change the Units preferences to pixels. If your one-column graphic is 100 pixels wide, make your one-column div in the HTML page 300px (three times the width).
+This was originally designed for use in print journalism. Sizing was based around their standard sizes. However, you can set up this app to use whatever sizes you want. If you have your own standards, you can change them to your liking. We post maps to Facebook and in reports. The sizes for those are pretty standard so we've set things up accordingly:
 
 Here's where you change the sizes in the index.html page
 
@@ -72,7 +72,7 @@ Customizing map features works the same way. If your streets are 1 point wide, m
       [zoom>=16] { line-width: 1.95; }
     }
 
-Custom map styles require a subscription to Mapbox. A free subscription will get you one style. Five dollars per month will get you three and $49 per month will get you 10. That may seem like a lot but it's worth it considering for the production time saved. 
+Custom map styles require a subscription to Mapbox. A free subscription will get you one style. Five dollars per month will get you three and $49 per month will get you 10. That may seem like a lot but it's worth it considering for the production time saved.
 
 A simplified set of styles is included. Open the Styles folder and then open mapbox-studio-style in a text editor. These are the map styles written in CartoCSS, which is similar to the styling used in HTML pages.
 
