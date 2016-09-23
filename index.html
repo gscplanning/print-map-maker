@@ -56,15 +56,21 @@
                 <input type="button" onclick="findLatLon()" id="latLonBtn" value="GO" class="">
                 <br class="">
                 <br class="">
-                <label class="">3. If you want to add GeoJSON data to your map, paste it below.</label>
+                <label class="">3. If you want to add GeoJSON data to your map, you can create points, lines, and polygons using GeoJSON.io.</label>
                 <br class="">
+                <a href="http://geojson.io/" target="_blank"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#">
+                    Create some GeoJSON
+                </button></a>
+                <br>
+                <label class="">4. If you made some GeoJSON (or already have some), copy and paste it below. Then click the <i>ADD GeoJSON</i> button.</label>
                 <br class="">
+                <br>
                 <textarea class="geocodify" id="addJson" rows="8" cols="60"></textarea>
                 <br class="">
                 <input type="button" onclick="addJsonFeature()" id="addJsonBtn" value="ADD GeoJSON" class="">
                 <br class="">
                 <br class="">
-                <label class="">4. Adjust your zoom then click the "Save PNG" button.</label>
+                <label class="">5. Adjust your zoom then click the "Save PNG" button.</label>
             </div>
         </div>
         <div id="main-wrapper" class="col-md-9 pull-right">
@@ -86,6 +92,23 @@
                 </div>
             </div>
         </div>
+        <!-- TODO: Embed GeoJSON.io in a modal -->
+        <!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">GeoJSON.io</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="http://geojson.io/" frameborder="0" sandbox="allow-forms allow-scripts allow-same-origin" width="400" height="200"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
     </div>
     <!-- scripts -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
