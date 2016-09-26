@@ -10,9 +10,10 @@ L.mapbox.accessToken = 'pk.eyJ1IjoiZ3NjcGxhbm5pbmciLCJhIjoiRVZMNXpsQSJ9.5OxUlJTC
 
 // Create maps in the divs
 var map_fbtl = L.map('map_fbtl');
+var map_square540 = L.map('map_square540')
 var map_square1080 = L.map('map_square1080');
 
-var map_array = [map_fbtl, map_square1080]
+var map_array = [map_fbtl, map_square540, map_square1080]
 
 
 for (var i = 0; i < map_array.length; i++) {
@@ -26,7 +27,7 @@ var lineStyle = {
     'lineJoin': 'round'
 };
 var polyStyle = {
-    'color': '#000',
+    'color': '#f1c40f',
     'weight': 3,
     'opacity': 0.65,
     'fillOpacity': 0,
@@ -73,7 +74,7 @@ for (var i = 0; i < map_array.length; i++) {
 }
 
 // Set intitial bview
-geocoder.query('georgetown, ky', showMap);
+geocoder.query('101 e main st, georgetown, ky', showMap);
 
 function findAddress() {
     var getInput = document.getElementById('address').value;
@@ -113,7 +114,7 @@ function addJsonFeature() {
 
     var jsonData = JSON.parse(getData);
 
-    var jsonLayer2 = new L.geoJson(jsonData, {
+    var jsonLayer1 = new L.geoJson(jsonData, {
         style: function(feature) {
             return addStyle(feature);
         },
@@ -122,7 +123,16 @@ function addJsonFeature() {
         }
     }).addTo(map_fbtl);
 
-    var jsonLayer1 = new L.geoJson(jsonData, {
+    var jsonLayer2 = new L.geoJson(jsonData, {
+        style: function(feature) {
+            return addStyle(feature);
+        },
+        pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, pointStyle);
+        }
+    }).addTo(map_square540);
+
+    var jsonLayer3 = new L.geoJson(jsonData, {
         style: function(feature) {
             return addStyle(feature);
         },

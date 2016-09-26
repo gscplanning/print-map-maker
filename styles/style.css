@@ -5,6 +5,10 @@
     width: 1200px;
     height: 630px;
 }
+#map_square540 {
+    width: 540px;
+    height: 540px;
+}
 #map_square1080 {
     width: 1080px;
     height: 1080px;
