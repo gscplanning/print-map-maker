@@ -58,7 +58,7 @@
                 <br class="">
                 <label class="">3. If you want to add GeoJSON data to your map, you can create points, lines, and polygons using GeoJSON.io.</label>
                 <br class="">
-                <a href="http://geojson.io/" target="_blank"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#">
+                <a href="http://geojson.io/#map=13/38.2171/-84.5590" target="_blank"><button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#">
                     Create some GeoJSON
                 </button></a>
                 <br>
@@ -76,24 +76,31 @@
         <div id="main-wrapper" class="col-md-9 pull-right">
             <div id="main" class="">
                 <div class="page-header">
+                    <div id="address_request" class="">
+                        <p class="header">Address Request Form Map (450x275)
+                            <input type="button" name="map_arf" value="Save PNG" onclick="gatherinfo(map_arf)" class="btn">
+                        </p>
+                        <div id="map_arf" class="map_container"></div>
+                    </div>
                     <div id="fb_timeline" class="">
                         <p class="header">Facebook Timeline
-                            <input type="button" name="map_fbtl" value="Save PNG" onclick="gatherinfo(map_fbtl)" class="">
+                            <input type="button" name="map_fbtl" value="Save PNG" onclick="gatherinfo(map_fbtl)" class="btn">
                         </p>
                         <div id="map_fbtl" class="map_container"></div>
                     </div>
                     <div id="square540" class="">
                         <p class="header">Square (540px)
-                            <input type="button" name="map_square540" value="Save PNG" onclick="gatherinfo(map_square540)" class="">
+                            <input type="button" name="map_square540" value="Save PNG" onclick="gatherinfo(map_square540)" class="btn">
                         </p>
                         <div id="map_square540" class="map_container"></div>
                     </div>
                     <div id="square1080" class="">
                         <p class="header">Square (1080px)
-                            <input type="button" name="map_square1080" value="Save PNG" onclick="gatherinfo(map_square1080)" class="">
+                            <input type="button" name="map_square1080" value="Save PNG" onclick="gatherinfo(map_square1080)" class="btn">
                         </p>
                         <div id="map_square1080" class="map_container"></div>
                     </div>
+                    <!-- TODO: Add to modal -->
                     <div id="images" class=""></div>
                 </div>
             </div>

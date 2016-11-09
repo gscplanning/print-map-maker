@@ -9,11 +9,12 @@ document.getElementById('mapPicker').addEventListener('change', function() {
 L.mapbox.accessToken = 'pk.eyJ1IjoiZ3NjcGxhbm5pbmciLCJhIjoiRVZMNXpsQSJ9.5OxUlJTCDplPkdkKNlB91A';
 
 // Create maps in the divs
+var map_arf = L.map('map_arf');
 var map_fbtl = L.map('map_fbtl');
-var map_square540 = L.map('map_square540')
+var map_square540 = L.map('map_square540');
 var map_square1080 = L.map('map_square1080');
 
-var map_array = [map_fbtl, map_square540, map_square1080]
+var map_array = [map_arf, map_fbtl, map_square540, map_square1080]
 
 
 for (var i = 0; i < map_array.length; i++) {
@@ -34,7 +35,7 @@ var polyStyle = {
     'lineJoin': 'round'
 };
 var pointStyle = {
-    radius: 10.5,
+    radius: 8.5,
     fillColor: '#cd7139',
     color: '#fff',
     weight: 1,
@@ -114,7 +115,16 @@ function addJsonFeature() {
 
     var jsonData = JSON.parse(getData);
 
-    var jsonLayer1 = new L.geoJson(jsonData, {
+    var map_arf_jsonLayer = new L.geoJson(jsonData, {
+        style: function(feature) {
+            return addStyle(feature);
+        },
+        pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, pointStyle);
+        }
+    }).addTo(map_arf);
+
+    var map_fbtl_jsonLayer = new L.geoJson(jsonData, {
         style: function(feature) {
             return addStyle(feature);
         },
@@ -123,7 +133,7 @@ function addJsonFeature() {
         }
     }).addTo(map_fbtl);
 
-    var jsonLayer2 = new L.geoJson(jsonData, {
+    var map_square540_jsonLayer = new L.geoJson(jsonData, {
         style: function(feature) {
             return addStyle(feature);
         },
@@ -132,7 +142,7 @@ function addJsonFeature() {
         }
     }).addTo(map_square540);
 
-    var jsonLayer3 = new L.geoJson(jsonData, {
+    var map_square1080_jsonLayer = new L.geoJson(jsonData, {
         style: function(feature) {
             return addStyle(feature);
         },

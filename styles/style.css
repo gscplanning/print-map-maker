@@ -1,5 +1,10 @@
 .map_container {
     border: 1px solid black;
+    margin-bottom: 10px;
+}
+#map_arf {
+    width: 450px;
+    height: 275px;
 }
 #map_fbtl {
     width: 1200px;
